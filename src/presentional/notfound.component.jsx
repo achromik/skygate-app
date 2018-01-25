@@ -1,10 +1,11 @@
 import React from 'react';
+const Fragment = React.Fragment;
 
 const NotFound = () => (
-    <div>
+    <Fragment>
         <h1> Sorry...</h1>
         <p>There is nothing...</p>
-    </div>
+    </Fragment>
 );
 
 export default NotFound;

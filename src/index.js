@@ -4,7 +4,7 @@ import { Router, browserHistory } from 'react-router'
 import { Provider } from 'react-redux';
 import store from './store';
 import routes from './routes';
-import style from './index.css';
+import './index.css';
 
 import DevTools from './DevTools';
 

@@ -6,7 +6,73 @@
         "questionType": "text", 
         "questionValue": "what is your car?",
         "anwser": "",
-        "sub_inputs": 
+        "subInputs": 
+            [
+                {   
+                    "id" : 4,
+                    "conditionType": "equal",
+                    "conditionValue": "Toyota",
+                    "questionType": "text", 
+                    "questionValue": "What color is your Toyota?",
+                    "anwser": "",
+                    "subInputs": 
+                        [
+                            {   
+                                "id" : 6,
+                                "conditionType": "",
+                                "conditionValue": "",
+                                "questionType": "radio", 
+                                "questionValue": "Are you man?",
+                                "anwser": "",
+                                "subInputs": 
+                                    [
+                                    ]
+                            },
+                            {   
+                                "id" : 7,
+                                "conditionType": "",
+                                "conditionValue": "",
+                                "questionType": "number", 
+                                "questionValue": "Who old are you?",
+                                "anwser": "",
+                                "subInputs": 
+                                    [
+                                    ]
+                            }
+                        ]
+                },
+                {   
+                    "id" : 5,
+                    "conditionType": "equal",
+                    "conditionValue": "Ford",
+                    "questionType": "text", 
+                    "questionValue": "What color is your Ford?",
+                    "anwser": "",
+                    "subInputs": 
+                        [
+                        ]
+                }
+            ]
+    },
+    {   
+        "id" : 2,
+        "conditionType": "",
+        "conditionValue": "",
+        "questionType": "radio", 
+        "questionValue": "Are you man?",
+        "anwser": "",
+        "subInputs": 
+            [
+            ]
+    },
+    {   
+        "id" : 3,
+        "conditionType": "",
+        "conditionValue": "",
+        "questionType": "number", 
+        "questionValue": "Who old are you?",
+        "anwser": "",
+        "subInputs": 
             [
             ]
     }

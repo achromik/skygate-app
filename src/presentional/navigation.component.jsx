@@ -1,31 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router';
-import 'bootstrap/dist/css/bootstrap.css';
-//import 'bootstrap/dist/css/bootstrap-theme.css';
+import '../data/bootstrap.css';
+
+const Fragment = React.Fragment;
 
 const Navigation = props => {
     return (
-        <div>
+        <Fragment>
             <nav>
-
                 <ul className="nav nav-tabs">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/create">Create</Link>
+                        <Link key="1" className="nav-link" activeClassName="active" to="/create">Create</Link>
                     </li>
-                    <li>
-                        <Link className="nav-link" to="/preview">Preview</Link>
+                    <li className="nav-item">
+                        <Link key="2" className="nav-link" activeClassName="active" to="/preview">Preview</Link>
                     </li>
-                    <li>
-                        <Link className="nav-link" to="/export">Export</Link>
+                    <li className="nav-item">
+                        <Link key="3" className="nav-link" activeClassName="active" to="/export">Export</Link>
                     </li>
                 </ul>
-
-
             </nav>
             <div className="wrapper container-fluid">
                 {props.children}
             </div>
-        </div>
+        </Fragment>
     );
 };
 
