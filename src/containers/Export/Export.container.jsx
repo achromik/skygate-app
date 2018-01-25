@@ -9,7 +9,7 @@ class ExportContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pretty: false
+            pretty: true
         }
     }
 
@@ -20,8 +20,18 @@ class ExportContainer extends Component {
     render() {
         return (
             <Fragment>
-                <textarea className="export_textarea" defaultValue={JSON.stringify(this.props.questions, null, this.state.pretty ? "\t" : null)} />
-                <button type="button" className="d-block btn mx-auto btn-success" onClick={() => { this.setState({ pretty: !this.state.pretty }) }}>{this.state.pretty ? "Uglify" : "Pretty"}</button>
+                <textarea
+                    className="export_textarea"
+                    value={JSON.stringify(this.props.questions, null, this.state.pretty ? "  " : null)}
+                    readOnly
+                />
+                <button
+                    type="button"
+                    className="d-block btn mx-auto btn-success"
+                    onClick={() => { this.setState({ pretty: !this.state.pretty }) }}
+                >
+                    {this.state.pretty ? "Uglify" : "Pretty"}
+                </button>
             </Fragment>
         )
     }

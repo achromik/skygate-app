@@ -1,40 +1,44 @@
 import React, { Component } from 'react';
 import './FormContainer.css';
 
+const Fragment = React.Fragment;
+
 class FormContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            question: {
+                conditionType: '',
+                conditionValue: '',
+                questionType: '',
+                questionValue: '',
+                subInputs: []
+            }
+        }
+    }
+
     render() {
         const question = this.props.question;
         return (printForm(question, this.props.deleteQuestion))
     }
 }
 
-function printForm(question, deleteQuestion) {
+function printForm(question, deleteQuestion, parentQuestionType = null) {
+    const hiddenCondition = question.conditionType ? "" : "hidden";
     return (
         <div key={question.id} className="questionForm">
             <form className="w-100 border p-3 my-2">
-                {
-                    //check if root question
-                    question.conditionType
-                        ? (
-                            <div className="form-group row" data-name="condition">
-                                <label className="col-form-label col-form-label-sm col-sm-3 ">Condition</label>
-                                <div className="col-sm-5">
-                                    <select type="text" className="form-control form-control-sm" >
-                                        <option value="equals">Equals</option>
-                                        <option value="gt">Greather than</option>
-                                        <option value="lt">Less than</option>
-                                    </select>
-                                </div>
-                                <div className="col-sm-4">
-                                    <select type="text" className="form-control form-control-sm" >
-                                        <option value="yes">Yes</option>
-                                        <option value="no">No</option>
-                                    </select>
-                                </div>
-                            </div>
-                        )
-                        : null
-                }
+                <div className={`form-group row ${hiddenCondition}`} data-name="condition" >
+                    <label className="col-form-label col-form-label-sm col-sm-3 " >Condition</label>
+                    <div className="col-sm-5">
+                        <select type="text" className="form-control form-control-sm" value={question.conditionType}>
+                            {printCondtionTypeField(parentQuestionType)}
+                        </select>
+                    </div>
+                    <div className="col-sm-4">
+                        {printCondtionValueField(question.conditionValue, parentQuestionType)}
+                    </div>
+                </div>
                 <div className="form-group row" data-name="question">
                     <label className="col-form-label col-form-label-sm col-sm-3 ">Question</label>
                     <div className="col-sm-9">
@@ -68,8 +72,7 @@ function printForm(question, deleteQuestion) {
                     question.subInputs.length
                         ? question.subInputs.map(item => {
                             return (
-
-                                printForm(item, deleteQuestion)
+                                printForm(item, deleteQuestion, question.questionType)
                             )
                         })
                         : null
@@ -78,5 +81,44 @@ function printForm(question, deleteQuestion) {
         </div>
     )
 }
+
+function printCondtionTypeField(type) {
+    switch (type) {
+        case "text":
+        case "radio":
+            return (
+                <option value="eq">Equals</option>
+            );
+        case "number":
+            return (
+                <Fragment>
+                    <option value="gt">Greather than</option>
+                    <option value="lt">Less than</option>
+                </Fragment>
+            );
+        default:
+            return null;
+    }
+}
+
+function printCondtionValueField(value, type) {
+    switch (type) {
+        case "text":
+        case "number":
+            return (
+                <input type="text" className="form-control form-control-sm" value={value} />
+            );
+        case "radio":
+            return (
+                <select type="text" className="form-control form-control-sm" value={value} >
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            );
+        default:
+            return null;
+    }
+}
+
 
 export default FormContainer;

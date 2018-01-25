@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { getQuestions, deleteQuestion } from "../../actions/actions";
+import { getQuestions, deleteQuestion, addQuestion } from "../../actions/actions";
 import FormContainer from './Form.container';
 
 class CreateContainer extends Component {
     constructor(props) {
         super(props);
         this.deleteQuestion = this.deleteQuestion.bind(this);
+        this.addQuestion = this.addQuestion.bind(this);
     }
-    
+
     componentDidMount() {
         this.props.dispatch(getQuestions());
     }
@@ -17,16 +18,26 @@ class CreateContainer extends Component {
         this.props.dispatch(deleteQuestion(id));
     }
 
+    addQuestion() {
+        this.props.dispatch(addQuestion());
+    }
+
     render() {
         return [
             this.props.questions.map(item => {
                 return <FormContainer
-                    key={item.id}
-                    question={item}
+                    key = {item.id}
+                    question = {item}
                     deleteQuestion = {this.deleteQuestion}
                 />
             }),
-            <button key={"add-button"} className="btn btn-success">Add Input</button>
+            <button
+                key = {"add-button"}
+                className = "btn btn-success m-2"
+                onClick = {() => this.addQuestion()}
+            >
+                Add Input
+            </button>
         ]
     }
 }

@@ -5,36 +5,32 @@
         "conditionValue": "",
         "questionType": "text", 
         "questionValue": "what is your car?",
-        "anwser": "",
         "subInputs": 
             [
                 {   
                     "id" : 4,
-                    "conditionType": "equal",
+                    "conditionType": "eq",
                     "conditionValue": "Toyota",
-                    "questionType": "text", 
-                    "questionValue": "What color is your Toyota?",
-                    "anwser": "",
+                    "questionType": "number", 
+                    "questionValue": "hom many wheels?",
                     "subInputs": 
                         [
                             {   
                                 "id" : 6,
-                                "conditionType": "",
-                                "conditionValue": "",
+                                "conditionType": "eq",
+                                "conditionValue": "1",
                                 "questionType": "radio", 
                                 "questionValue": "Are you man?",
-                                "anwser": "",
                                 "subInputs": 
                                     [
                                     ]
                             },
                             {   
                                 "id" : 7,
-                                "conditionType": "",
-                                "conditionValue": "",
+                                "conditionType": "eq",
+                                "conditionValue": "3",
                                 "questionType": "number", 
                                 "questionValue": "Who old are you?",
-                                "anwser": "",
                                 "subInputs": 
                                     [
                                     ]
@@ -43,11 +39,10 @@
                 },
                 {   
                     "id" : 5,
-                    "conditionType": "equal",
+                    "conditionType": "eq",
                     "conditionValue": "Ford",
                     "questionType": "text", 
                     "questionValue": "What color is your Ford?",
-                    "anwser": "",
                     "subInputs": 
                         [
                         ]
@@ -60,7 +55,6 @@
         "conditionValue": "",
         "questionType": "radio", 
         "questionValue": "Are you man?",
-        "anwser": "",
         "subInputs": 
             [
             ]
@@ -71,7 +65,6 @@
         "conditionValue": "",
         "questionType": "number", 
         "questionValue": "Who old are you?",
-        "anwser": "",
         "subInputs": 
             [
             ]
