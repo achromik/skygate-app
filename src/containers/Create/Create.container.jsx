@@ -1,51 +1,18 @@
-import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { getQuestions, deleteQuestion, addQuestion } from "../../actions/actions";
-import FormContainer from './Form.container';
+import { getQuestions, deleteQuestion, addQuestion, updateQuestion, addSubInput } from "../../actions/actions";
 
-class CreateContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.deleteQuestion = this.deleteQuestion.bind(this);
-        this.addQuestion = this.addQuestion.bind(this);
-    }
+import Create from './Create'
 
-    componentDidMount() {
-        this.props.dispatch(getQuestions());
-    }
+const mapStateToProps = (state) => ({
+        questions: state.questionsReducer.questions
+});
 
-    deleteQuestion(id) {
-        this.props.dispatch(deleteQuestion(id));
-    }
+const mapDispatchToProps = (dispatch) => ({
+    deleteQuestion: (id) => dispatch(deleteQuestion(id)),
+    getQuestions: () => dispatch(getQuestions()),
+    addQuestion: () => dispatch(addQuestion()),
+    addSubInput: (id) => dispatch(addSubInput(id)),
+    updateQuestion: (id, update) => dispatch(updateQuestion(id, update))
+});
 
-    addQuestion() {
-        this.props.dispatch(addQuestion());
-    }
-
-    render() {
-        return [
-            this.props.questions.map(item => {
-                return <FormContainer
-                    key = {item.id}
-                    question = {item}
-                    deleteQuestion = {this.deleteQuestion}
-                />
-            }),
-            <button
-                key = {"add-button"}
-                className = "btn btn-success m-2"
-                onClick = {() => this.addQuestion()}
-            >
-                Add Input
-            </button>
-        ]
-    }
-}
-
-const mapStateToProps = function (store) {
-    return {
-        questions: store.questionsReducer.questions
-    };
-};
-
-export default connect(mapStateToProps)(CreateContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Create);

@@ -6,13 +6,13 @@ import store from './store';
 import routes from './routes';
 import './index.css';
 
-import DevTools from './DevTools';
+// import DevTools from './DevTools';
 
 render(
     <Provider store={store}>
         <div>
             <Router history={browserHistory} routes={routes} />
-            <DevTools />
+            {/* <DevTools /> */}
         </div>
     </Provider>,
     document.getElementById('root')
