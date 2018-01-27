@@ -1,4 +1,4 @@
-import { GET_QUESTIONS, ADD_QUESTION, DELETE_QUESTION, UPDATE_QUESTION, ADD_SUB_INPUT } from "../actions/actions";
+import { GET_QUESTIONS, ADD_QUESTION, DELETE_QUESTION, UPDATE_QUESTION, ADD_SUB_INPUT, TOGGLE_PRETTY_EXPORT } from "../actions/actions";
 import { loadState } from "../util/localStorage";
 
 const questions = loadState();
@@ -7,7 +7,8 @@ const uuid4 = require('uuid/v4')
 // import questions from '../data/data.json'
 
 const initialState = {
-    questions
+    questions,
+    isPretyExport: false
 };
 
 const questionsReducer = function (state = initialState, action) {
@@ -44,6 +45,9 @@ const questionsReducer = function (state = initialState, action) {
                 subInputs: []
             }
             return Object.assign({}, state, { questions: addSubInput(action.id, state.questions, newSubInput)})
+        
+        case TOGGLE_PRETTY_EXPORT:
+            return Object.assign({}, state, {isPretyExport: !state.isPretyExport})  
 
         default:
             return state;

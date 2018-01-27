@@ -1,0 +1,23 @@
+.questionForm {
+    width: 400px;
+    position: relative;
+    border-left: 3px solid #dee2e6;
+}
+
+.questionForm form {
+    position: relative;
+    left: -3px;
+}
+
+.questionForm .questionForm:before {
+    content: '\2192';
+    position: absolute;
+    left: -54px;
+    top: 59px;
+    font-size: 43px;
+    color: #dee2e6;
+}
+
+.hidden {
+    display: none;
+}

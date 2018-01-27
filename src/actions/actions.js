@@ -3,6 +3,7 @@ export const ADD_QUESTION = 'ADD_QUESTION';
 export const DELETE_QUESTION = 'DELETE_QUESTION';
 export const UPDATE_QUESTION = 'UPDATE_QUESTION';
 export const ADD_SUB_INPUT = 'ADD_SUB_INPUT';
+export const TOGGLE_PRETTY_EXPORT = 'TOGGLE_PRETTY_EXPORT';
 
 export function getQuestions() {
     return {
@@ -35,5 +36,11 @@ export function addSubInput(id) {
     return {
         type: ADD_SUB_INPUT,
         id
+    }
+}
+
+export function togglePrettyExport() {
+    return {
+        type: TOGGLE_PRETTY_EXPORT
     }
 }

@@ -1,17 +1,16 @@
+/* html, */
 body {
-    padding: 0px;
+	padding: 30px;
 	font-family: sans-serif;
-	background-color: #474545;
+	background-color: #ffffff;
 }
 
-#root {
-	width: 50%;
-	min-width: 800px;
+/* #root {
 	margin: 10px auto;
 	padding: 30px;
 	background-color: white;
 	box-shadow: 5px 5px 15px black
-}
+} */
 
 .wrapper {
 	min-height: calc(100vh - 150px);

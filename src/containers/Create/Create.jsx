@@ -1,5 +1,7 @@
 import React from 'react';
-import FormContainer from './Form.container';
+// import FormContainer from './Form.container';
+
+import FormContainer from './QuestionForm/QuestionForm.container'      ;
 
 const Fragment = React.Fragment;
 
@@ -10,9 +12,9 @@ const Create = ({ questions, updateQuestion, deleteQuestion, addSubInput, addQue
                 level={0}
                 key={item.id}
                 question={item}
-                deleteQuestion={deleteQuestion}
-                updateQuestion={updateQuestion}
-                addSubInput={addSubInput}
+                // deleteQuestion={deleteQuestion}
+                // updateQuestion={updateQuestion}
+                // addSubInput={addSubInput}
             />
         })}
         <button

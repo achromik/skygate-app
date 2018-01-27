@@ -1,46 +1,18 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getQuestions } from "../../actions/actions";
-import './Export.css'
+import { togglePrettyExport } from "../../actions/actions";
+import Export from './Export';
 
-const Fragment = React.Fragment;
-
-class ExportContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            pretty: true
-        }
-    }
-
-    componentDidMount() {
-        this.props.dispatch(getQuestions());
-    }
-
-    render() {
-        return (
-            <Fragment>
-                <textarea
-                    className="export_textarea"
-                    value={JSON.stringify(this.props.questions, null, this.state.pretty ? "  " : null)}
-                    readOnly
-                />
-                <button
-                    type="button"
-                    className="d-block btn mx-auto btn-success"
-                    onClick={() => { this.setState({ pretty: !this.state.pretty }) }}
-                >
-                    {this.state.pretty ? "Uglify" : "Pretty"}
-                </button>
-            </Fragment>
-        )
-    }
-}
-
-const mapStateToProps = function (store) {
+const mapStateToProps = (store) => {
     return {
-        questions: store.questionsReducer.questions
+        questions: store.questionsReducer.questions,
+        isPretyExport: store.questionsReducer.isPretyExport
     };
 };
 
-export default connect(mapStateToProps)(ExportContainer);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        togglePrettyExport: () => dispatch(togglePrettyExport())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Export);

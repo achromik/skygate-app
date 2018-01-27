@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import Navigation from './presentional/navigation.component';
-import Home from './presentional/home.component';
+import Navigation from './presentional/Navigation';
+import Home from './presentional/Home';
 import Preview from './presentional/preview.component';
 import Export from "./containers/Export/Export.container";
 import Create from "./containers/Create/Create.container";
-import NotFound from './presentional/notfound.component';
+import NotFound from './presentional/NotFound';
 
 export default (
     <Route path='/' component={Navigation}>

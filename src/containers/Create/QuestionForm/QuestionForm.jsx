@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import './FormContainer.css';
-import { getQuestions } from "../../actions/actions";
+import './QuestionForm.css';
+import SubQuestionForm from './QuestionForm.container';
 
 const Fragment = React.Fragment;
 
-class FormContainer extends Component {
+class QuestionForm extends Component {
     constructor(props) {
+        console.log(props)
         super(props);
         this.state = {
             question: {}
         }
         this.onChangeHandler = this.onChangeHandler.bind(this);
     }
-
-
 
     onChangeHandler(e) {
         this.setState({
@@ -31,6 +30,57 @@ class FormContainer extends Component {
         const colorLevel = 250 - this.props.level % 5 * 14
 
         const hiddenCondition = question.conditionType ? "" : "hidden";
+
+        const printCondtionTypeField = (type) => {
+            switch (type) {
+                case "text":
+                case "radio":
+                    return (
+                        <option value="eq">Equals</option>
+                    );
+                case "number":
+                    return (
+                        <Fragment>
+                            <option value="eq">Equals</option>
+                            <option value="gt">Greather than</option>
+                            <option value="lt">Less than</option>
+                        </Fragment>
+                    );
+                default:
+                    return null;
+            }
+        }
+
+        const printCondtionValueField = (value, type) => {
+            switch (type) {
+                case "text":
+                case "number":
+                    return (
+                        <input
+                            type={type}
+                            name="conditionValue"
+                            className="form-control form-control-sm"
+                            value={value}
+                            onChange={(e) => this.onChangeHandler(e)}
+                        />
+                    );
+                case "radio":
+                    return (
+                        <select
+                            type="text"
+                            name="conditionValue"
+                            className="form-control form-control-sm"
+                            value={value}
+                            onChange={(e) => onChangeHandler(e)}
+                        >
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    );
+                default:
+                    return null;
+            }
+        }
 
         return (
             <div key={question.id} className="questionForm">
@@ -96,25 +146,25 @@ class FormContainer extends Component {
                         <button
                             type="button"
                             className="btn btn-sm btn-danger mx-2"
-                            onClick={() => deleteQuestion(question.id) }
+                            onClick={() => deleteQuestion(question.id)}
                         >
                             Delete
                         </button>
                     </div>
                 </form>
 
-                <div className="ml-4">
+                <div className="ml-5">
                     {
                         question.subInputs.length
                             ? question.subInputs.map(item => {
                                 return (
-                                    <FormContainer
+                                    <SubQuestionForm
                                         level={this.props.level + 1}
                                         key={item.id}
                                         question={item}
-                                        deleteQuestion={deleteQuestion}
-                                        updateQuestion={updateQuestion}
-                                        addSubInput={addSubInput}
+                                        // deleteQuestion={deleteQuestion}
+                                        // updateQuestion={updateQuestion}
+                                        // addSubInput={addSubInput}
                                         parentQuestionType={question.questionType}
                                     />
                                 )
@@ -123,60 +173,8 @@ class FormContainer extends Component {
                     }
                 </div>
             </div>
-        )
-
-        function printCondtionTypeField(type) {
-            switch (type) {
-                case "text":
-                case "radio":
-                    return (
-                        <option value="eq">Equals</option>
-                    );
-                case "number":
-                    return (
-                        <Fragment>
-                            <option value="eq">Equals</option>
-                            <option value="gt">Greather than</option>
-                            <option value="lt">Less than</option>
-                        </Fragment>
-                    );
-                default:
-                    return null;
-            }
-        }
-
-        function printCondtionValueField(value, type) {
-            switch (type) {
-                case "text":
-                case "number":
-                    return (
-                        <input
-                            type={type}
-                            name="conditionValue"
-                            className="form-control form-control-sm"
-                            value={value}
-                            onChange={(e) => onChangeHandler(e)}
-                        />
-                    );
-                case "radio":
-                    return (
-                        <select
-                            type="text"
-                            name="conditionValue"
-                            className="form-control form-control-sm"
-                            value={value}
-                            onChange={(e) => onChangeHandler(e)}
-                        >
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    );
-                default:
-                    return null;
-            }
-        }
-
+        );
     }
 }
 
-export default FormContainer;
+export default QuestionForm;
