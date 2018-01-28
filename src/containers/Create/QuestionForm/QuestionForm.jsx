@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './QuestionForm.css';
 import SubQuestionForm from './QuestionForm.container';
 
-const Fragment = React.Fragment;
+// const Fragment = React.Fragment;
 
 class QuestionForm extends Component {
     constructor(props) {
@@ -33,22 +33,20 @@ class QuestionForm extends Component {
         const printCondtionTypeField = (type) => {
             switch (type) {
                 case "text":
-                
                 case "radio":
-                return (
-                    <select
-                        id={question.id+'_'+type}
-                        type="text"
-                        name="conditionType"
-                        className="form-control form-control-sm"
-                        value={question.conditionType}
-                        onChange={(e) => onChangeHandler(e)}
-                        required
-                    >
-                        <option value="" disabled>Select a value...</option>
-                        <option value="eq">Equals</option>
-                    </select>
-                );
+                    return (
+                        <select
+                            type="text"
+                            name="conditionType"
+                            className="form-control form-control-sm"
+                            value={question.conditionType}
+                            onChange={(e) => onChangeHandler(e)}
+                            required
+                        >
+                            <option value="" disabled>Select a value...</option>
+                            <option value="eq">Equals</option>
+                        </select>
+                    );
                 case "number":
                     return (
                         <select
