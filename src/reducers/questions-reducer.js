@@ -5,9 +5,6 @@ import { loadState } from "../util/localStorage";
 const questions = loadState();
 const uuid4 = require('uuid/v4')
 
-
-// import questions from '../questionsArray/questionsArray.json'
-
 const initialState = {
     questions,
     searchResult: {},
@@ -32,7 +29,7 @@ const questionsReducer = function (state = initialState, action) {
                         conditionType: "",
                         conditionValue: "",
                         questionType: "",
-                        questionValue: "Pleas enter a question!",
+                        questionValue: "",
                         subInputs: [],
                     }
                 ]
@@ -50,7 +47,7 @@ const questionsReducer = function (state = initialState, action) {
                 conditionType: "",
                 conditionValue: "",
                 questionType: "",
-                questionValue: "Please enter a question!",
+                questionValue: "",
                 subInputs: [],
             }
             return Object.assign({}, state, {
@@ -72,7 +69,7 @@ const questionsReducer = function (state = initialState, action) {
             })
 
         case RESET_ANSWERS:
-            return Object.assign({}, state, {answers: {}})    
+            return Object.assign({}, state, { answers: {} })
 
         default:
             return state;

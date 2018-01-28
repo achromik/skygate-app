@@ -28,26 +28,42 @@ class QuestionForm extends Component {
         const parentQuestionType = this.props.parentQuestionType;
         const colorLevel = 250 - this.props.level % 5 * 14
 
-        const hiddenCondition = this.props.questions.find((element) => element.id === question.id) ? "hidden" : "";
+        const hiddenCondition = this.props.questions.find((element) => element.id === question.id)
 
         const printCondtionTypeField = (type) => {
             switch (type) {
                 case "text":
+                
                 case "radio":
-                    return (
-                        <Fragment>
-                            <option value="" disabled>Select a value...</option>
-                            <option value="eq">Equals</option>
-                        </Fragment>
-                    );
+                return (
+                    <select
+                        id={question.id+'_'+type}
+                        type="text"
+                        name="conditionType"
+                        className="form-control form-control-sm"
+                        value={question.conditionType}
+                        onChange={(e) => onChangeHandler(e)}
+                        required
+                    >
+                        <option value="" disabled>Select a value...</option>
+                        <option value="eq">Equals</option>
+                    </select>
+                );
                 case "number":
                     return (
-                        <Fragment>
+                        <select
+                            type="text"
+                            name="conditionType"
+                            className="form-control form-control-sm"
+                            value={question.conditionType}
+                            onChange={(e) => onChangeHandler(e)}
+                            required
+                        >
                             <option value="" disabled>Select a value...</option>
                             <option value="eq">Equals</option>
                             <option value="gt">Greather than</option>
                             <option value="lt">Less than</option>
-                        </Fragment>
+                        </select>
                     );
                 default:
                     return null;
@@ -64,7 +80,9 @@ class QuestionForm extends Component {
                             name="conditionValue"
                             className="form-control form-control-sm"
                             value={value}
+                            placeholder="Enter a value!"
                             onChange={(e) => this.onChangeHandler(e)}
+                            required
                         />
                     );
                 case "radio":
@@ -74,8 +92,8 @@ class QuestionForm extends Component {
                             name="conditionValue"
                             className="form-control form-control-sm"
                             value={value}
-                            defaultValue=""
                             onChange={(e) => onChangeHandler(e)}
+                            required
                         >
                             <option value="" disabled>Select a value...</option>
                             <option value="Yes">Yes</option>
@@ -93,26 +111,25 @@ class QuestionForm extends Component {
                     className="w-100 border p-3 my-2"
                     style={{ backgroundColor: `rgb(${colorLevel},${colorLevel},${colorLevel})` }}
                     onChange={(e) => updateQuestion(question.id, { [e.target.name]: e.target.value })}
-                    onSubmit={(e) => e.preventDefault()}
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        addSubInput(question.id)
+                    }}
+
                 >
-                    <div className={`form-group row ${hiddenCondition}`} data-name="condition" >
-                        <label className="col-form-label col-form-label-sm col-sm-3 " >Condition</label>
-                        <div className="col-sm-5">
-                            <select
-                                type="text"
-                                name="conditionType"
-                                className="form-control form-control-sm"
-                                value={question.conditionType}
-                                defaultValue=""
-                                onChange={(e) => onChangeHandler(e)}
-                            >
+                    {hiddenCondition
+                        ? null
+                        : <div className="form-group row" data-name="condition" >
+                            <label className="col-form-label col-form-label-sm col-sm-3 " >Condition</label>
+                            <div className="col-sm-5">
                                 {printCondtionTypeField(parentQuestionType)}
-                            </select>
+
+                            </div>
+                            <div className="col-sm-4">
+                                {printCondtionValueField(question.conditionValue, parentQuestionType)}
+                            </div>
                         </div>
-                        <div className="col-sm-4">
-                            {printCondtionValueField(question.conditionValue, parentQuestionType)}
-                        </div>
-                    </div>
+                    }
                     <div className="form-group row" data-name="question">
                         <label className="col-form-label col-form-label-sm col-sm-3 ">Question</label>
                         <div className="col-sm-9">
@@ -121,7 +138,9 @@ class QuestionForm extends Component {
                                 name="questionValue"
                                 className="form-control form-control-sm"
                                 value={question.questionValue}
+                                placeholder="Please enter a question!"
                                 onChange={(e) => onChangeHandler(e)}
+                                required
                             />
                         </div>
                     </div>
@@ -133,8 +152,8 @@ class QuestionForm extends Component {
                                 name="questionType"
                                 className="form-control form-control-sm"
                                 value={question.questionType}
-                                defaultValue=""
                                 onChange={(e) => onChangeHandler(e)}
+                                required
                             >
                                 <option value="" disabled>Select a value...</option>
                                 <option value="text">Text</option>
@@ -145,9 +164,9 @@ class QuestionForm extends Component {
                     </div>
                     <div className="d-flex justify-content-end">
                         <button
-                            type="button"
+                            type="submit"
                             className="btn btn-sm mx-2 btn-primary"
-                            onClick={() => addSubInput(question.id)}
+
                         >
                             Add Sub-Input
                         </button>
