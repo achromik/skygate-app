@@ -1,72 +1,147 @@
 [
-    {   
-        "id" : 1,
+    {
+        "id": "6c29c0cd-c972-4c9b-8dec-222ba081b648",
         "conditionType": "",
         "conditionValue": "",
-        "questionType": "text", 
-        "questionValue": "what is your car?",
-        "subInputs": 
-            [
-                {   
-                    "id" : 4,
-                    "conditionType": "eq",
-                    "conditionValue": "Toyota",
-                    "questionType": "number", 
-                    "questionValue": "hom many wheels?",
-                    "subInputs": 
-                        [
-                            {   
-                                "id" : 6,
+        "questionType": "radio",
+        "questionValue": "Do you have a car?",
+        "subInputs": [
+            {
+                "id": "e062b023-4269-427c-8fd9-f33b0d0d056c",
+                "conditionType": "eq",
+                "conditionValue": "",
+                "questionType": "text",
+                "questionValue": "What is your car?",
+                "subInputs": [
+                    {
+                        "id": "49ab5d65-61ab-4fdc-9f02-c35c48413cbb",
+                        "conditionType": "eq",
+                        "conditionValue": "Ford",
+                        "questionType": "radio",
+                        "questionValue": "It's black?",
+                        "subInputs": [
+                            {
+                                "id": "6e85796f-8731-4dd7-81f5-e23cab19c1df",
                                 "conditionType": "eq",
-                                "conditionValue": "1",
-                                "questionType": "radio", 
-                                "questionValue": "Are you man?",
-                                "subInputs": 
-                                    [
-                                    ]
-                            },
-                            {   
-                                "id" : 7,
-                                "conditionType": "eq",
-                                "conditionValue": "3",
-                                "questionType": "number", 
-                                "questionValue": "Who old are you?",
-                                "subInputs": 
-                                    [
-                                    ]
+                                "conditionValue": "No",
+                                "questionType": "text",
+                                "questionValue": "What kind of color it is?",
+                                "subInputs": []
                             }
                         ]
-                },
-                {   
-                    "id" : 5,
-                    "conditionType": "eq",
-                    "conditionValue": "Ford",
-                    "questionType": "text", 
-                    "questionValue": "What color is your Ford?",
-                    "subInputs": 
-                        [
+                    },
+                    {
+                        "id": "fba5f4dd-ef61-49f9-b6bf-315467265408",
+                        "conditionType": "eq",
+                        "conditionValue": "Mercedes",
+                        "questionType": "radio",
+                        "questionValue": "It's a truck? ",
+                        "subInputs": [
+                            {
+                                "id": "5eb269de-4fa7-4fb7-b133-5715ef9949ab",
+                                "conditionType": "eq",
+                                "conditionValue": "",
+                                "questionType": "number",
+                                "questionValue": "Hom many wheels it has got?",
+                                "subInputs": [
+                                    {
+                                        "id": "9d50d152-a4a0-4161-bfbd-d3c9e7e92b5f",
+                                        "conditionType": "lt",
+                                        "conditionValue": "7",
+                                        "questionType": "text",
+                                        "questionValue": "What kind o f car it is?",
+                                        "subInputs": []
+                                    }
+                                ]
+                            }
                         ]
-                }
-            ]
+                    }
+                ]
+            },
+            {
+                "id": "42421a69-a347-43ac-926b-b0b7af0e6839",
+                "conditionType": "eq",
+                "conditionValue": "No",
+                "questionType": "radio",
+                "questionValue": "Do you have a bicycle?",
+                "subInputs": [
+                    {
+                        "id": "11360813-d96e-40a2-920f-1564c954cec0",
+                        "conditionType": "eq",
+                        "conditionValue": "No",
+                        "questionType": "radio",
+                        "questionValue": "Are you runner?",
+                        "subInputs": []
+                    }
+                ]
+            }
+        ]
     },
-    {   
-        "id" : 2,
+    {
+        "id": "4fe0b47a-419e-467f-833c-19b7cacfac1d",
         "conditionType": "",
         "conditionValue": "",
-        "questionType": "radio", 
-        "questionValue": "Are you man?",
-        "subInputs": 
-            [
-            ]
+        "questionType": "number",
+        "questionValue": "What is your age?",
+        "subInputs": [
+            {
+                "id": "0e4049af-c1ca-484a-b474-02924e0b7e37",
+                "conditionType": "gt",
+                "conditionValue": "16",
+                "questionType": "radio",
+                "questionValue": "Do you have drive license?",
+                "subInputs": [
+                    {
+                        "id": "6a7ba192-1a3c-4c48-b857-1bf0574198bc",
+                        "conditionType": "eq",
+                        "conditionValue": "No",
+                        "questionType": "radio",
+                        "questionValue": "Wil you do DL?",
+                        "subInputs": []
+                    }
+                ]
+            },
+            {
+                "id": "ec9835fc-486f-4c01-97aa-fafcad835c60",
+                "conditionType": "eq",
+                "conditionValue": "15",
+                "questionType": "radio",
+                "questionValue": "Do you drive a car whit parrents?",
+                "subInputs": []
+            },
+            {
+                "id": "73ee5675-76b2-4e22-8c41-df37a53ac5ea",
+                "conditionType": "lt",
+                "conditionValue": "15",
+                "questionType": "radio",
+                "questionValue": "Do you drive a car whit parrents?",
+                "subInputs": []
+            }
+        ]
     },
-    {   
-        "id" : 3,
+    {
+        "id": "2e57052a-e91e-4bd9-9e82-75a14d3df6d0",
         "conditionType": "",
         "conditionValue": "",
-        "questionType": "number", 
-        "questionValue": "Who old are you?",
-        "subInputs": 
-            [
-            ]
+        "questionType": "text",
+        "questionValue": "what is your sex? (!! Type M for male, F for female)",
+        "subInputs": [
+            {
+                "id": "23844437-4d7a-4bbf-82f5-a31ae4d2a065",
+                "conditionType": "eq",
+                "conditionValue": "M",
+                "questionType": "number",
+                "questionValue": "What age is your wife?",
+                "subInputs": []
+            },
+            {
+                "id": "9dc3e072-aa2c-4bff-bc32-4c6222d923e6",
+                "conditionType": "eq",
+                "conditionValue": "F",
+                "questionType": "number",
+                "questionValue": "What age is your housband?",
+                "subInputs": []
+            }
+        ]
     }
 ]

@@ -6,7 +6,6 @@ const Fragment = React.Fragment;
 
 class QuestionForm extends Component {
     constructor(props) {
-        console.log(props)
         super(props);
         this.state = {
             question: {}
@@ -29,18 +28,22 @@ class QuestionForm extends Component {
         const parentQuestionType = this.props.parentQuestionType;
         const colorLevel = 250 - this.props.level % 5 * 14
 
-        const hiddenCondition = question.conditionType ? "" : "hidden";
+        const hiddenCondition = this.props.questions.find((element) => element.id === question.id) ? "hidden" : "";
 
         const printCondtionTypeField = (type) => {
             switch (type) {
                 case "text":
                 case "radio":
                     return (
-                        <option value="eq">Equals</option>
+                        <Fragment>
+                            <option value="" disabled>Select a value...</option>
+                            <option value="eq">Equals</option>
+                        </Fragment>
                     );
                 case "number":
                     return (
                         <Fragment>
+                            <option value="" disabled>Select a value...</option>
                             <option value="eq">Equals</option>
                             <option value="gt">Greather than</option>
                             <option value="lt">Less than</option>
@@ -71,8 +74,10 @@ class QuestionForm extends Component {
                             name="conditionValue"
                             className="form-control form-control-sm"
                             value={value}
+                            defaultValue=""
                             onChange={(e) => onChangeHandler(e)}
                         >
+                            <option value="" disabled>Select a value...</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
@@ -98,6 +103,7 @@ class QuestionForm extends Component {
                                 name="conditionType"
                                 className="form-control form-control-sm"
                                 value={question.conditionType}
+                                defaultValue=""
                                 onChange={(e) => onChangeHandler(e)}
                             >
                                 {printCondtionTypeField(parentQuestionType)}
@@ -127,8 +133,10 @@ class QuestionForm extends Component {
                                 name="questionType"
                                 className="form-control form-control-sm"
                                 value={question.questionType}
+                                defaultValue=""
                                 onChange={(e) => onChangeHandler(e)}
                             >
+                                <option value="" disabled>Select a value...</option>
                                 <option value="text">Text</option>
                                 <option value="radio">Yes/No</option>
                                 <option value="number">Number</option>
@@ -162,9 +170,6 @@ class QuestionForm extends Component {
                                         level={this.props.level + 1}
                                         key={item.id}
                                         question={item}
-                                        // deleteQuestion={deleteQuestion}
-                                        // updateQuestion={updateQuestion}
-                                        // addSubInput={addSubInput}
                                         parentQuestionType={question.questionType}
                                     />
                                 )
