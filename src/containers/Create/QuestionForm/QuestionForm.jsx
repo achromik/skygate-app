@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './QuestionForm.css';
 import SubQuestionForm from './QuestionForm.container';
-
-// const Fragment = React.Fragment;
+import TypeInput from '../components/TypeInput';
+import QuestionInput from '../components/QuestionInput';
+import ConditionInputComponent from "../components/ConditionInputComponent";
 
 class QuestionForm extends Component {
     constructor(props) {
@@ -28,138 +29,52 @@ class QuestionForm extends Component {
         const parentQuestionType = this.props.parentQuestionType;
         const colorLevel = 250 - this.props.level % 5 * 14
 
-        const hiddenCondition = this.props.questions.find((element) => element.id === question.id)
-
-        const printCondtionTypeField = (type) => {
-            switch (type) {
-                case "text":
-                case "radio":
-                    return (
-                        <select
-                            type="text"
-                            name="conditionType"
-                            className="form-control form-control-sm"
-                            value={question.conditionType}
-                            onChange={(e) => onChangeHandler(e)}
-                            required
-                        >
-                            <option value="" disabled>Select a value...</option>
-                            <option value="eq">Equals</option>
-                        </select>
-                    );
-                case "number":
-                    return (
-                        <select
-                            type="text"
-                            name="conditionType"
-                            className="form-control form-control-sm"
-                            value={question.conditionType}
-                            onChange={(e) => onChangeHandler(e)}
-                            required
-                        >
-                            <option value="" disabled>Select a value...</option>
-                            <option value="eq">Equals</option>
-                            <option value="gt">Greather than</option>
-                            <option value="lt">Less than</option>
-                        </select>
-                    );
-                default:
-                    return null;
-            }
-        }
-
-        const printCondtionValueField = (value, type) => {
-            switch (type) {
-                case "text":
-                case "number":
-                    return (
-                        <input
-                            type={type}
-                            name="conditionValue"
-                            className="form-control form-control-sm"
-                            value={value}
-                            placeholder="Enter a value!"
-                            onChange={(e) => this.onChangeHandler(e)}
-                            required
-                        />
-                    );
-                case "radio":
-                    return (
-                        <select
-                            type="text"
-                            name="conditionValue"
-                            className="form-control form-control-sm"
-                            value={value}
-                            onChange={(e) => onChangeHandler(e)}
-                            required
-                        >
-                            <option value="" disabled>Select a value...</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    );
-                default:
-                    return null;
-            }
-        }
+        const isHiddenConditionFields = question.conditionType === null
 
         return (
             <div key={question.id} className="questionForm">
                 <form
                     className="w-100 border p-3 my-2"
                     style={{ backgroundColor: `rgb(${colorLevel},${colorLevel},${colorLevel})` }}
-                    onChange={(e) => updateQuestion(question.id, { [e.target.name]: e.target.value })}
+                    onChange={(e) => {
+
+                        if (e.target.name === "questionType") {
+                            updateQuestion(question.id, { [e.target.name]: e.target.value })
+                            if (question.subInputs) {
+                                question.subInputs.forEach((element) => {
+                                    updateQuestion(element.id, {
+                                        questionType: '',
+                                        conditionType: '',
+                                        conditionValue: ''
+                                    })
+                                })
+                            }
+                        } else {
+                            updateQuestion(question.id, { [e.target.name]: e.target.value })
+                        }
+                    }}
                     onSubmit={(e) => {
                         e.preventDefault();
                         addSubInput(question.id)
                     }}
 
                 >
-                    {hiddenCondition
+                    {isHiddenConditionFields
                         ? null
-                        : <div className="form-group row" data-name="condition" >
-                            <label className="col-form-label col-form-label-sm col-sm-3 " >Condition</label>
-                            <div className="col-sm-5">
-                                {printCondtionTypeField(parentQuestionType)}
-
-                            </div>
-                            <div className="col-sm-4">
-                                {printCondtionValueField(question.conditionValue, parentQuestionType)}
-                            </div>
-                        </div>
+                        : <ConditionInputComponent
+                            question={question}
+                            onChangeHandler={onChangeHandler}
+                            parentQuestionType={parentQuestionType}
+                        />
                     }
-                    <div className="form-group row" data-name="question">
-                        <label className="col-form-label col-form-label-sm col-sm-3 ">Question</label>
-                        <div className="col-sm-9">
-                            <input
-                                type="text"
-                                name="questionValue"
-                                className="form-control form-control-sm"
-                                value={question.questionValue}
-                                placeholder="Please enter a question!"
-                                onChange={(e) => onChangeHandler(e)}
-                                required
-                            />
-                        </div>
-                    </div>
-                    <div className="form-group row" data-name="type">
-                        <label className="col-form-label col-form-label-sm col-sm-3 ">Type</label>
-                        <div className="col-sm-9">
-                            <select
-                                type="text"
-                                name="questionType"
-                                className="form-control form-control-sm"
-                                value={question.questionType}
-                                onChange={(e) => onChangeHandler(e)}
-                                required
-                            >
-                                <option value="" disabled>Select a value...</option>
-                                <option value="text">Text</option>
-                                <option value="radio">Yes/No</option>
-                                <option value="number">Number</option>
-                            </select>
-                        </div>
-                    </div>
+                    <QuestionInput
+                        question={question}
+                        onChangeHandler={onChangeHandler}
+                    />
+                    <TypeInput
+                        question={question}
+                        onChangeHandler={onChangeHandler}
+                    />
                     <div className="d-flex justify-content-end">
                         <button
                             type="submit"
@@ -197,6 +112,6 @@ class QuestionForm extends Component {
             </div>
         );
     }
-}
+};
 
 export default QuestionForm;

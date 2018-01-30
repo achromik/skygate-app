@@ -1,5 +1,5 @@
 .questionForm {
-    width: 400px;
+    width: 450px;
     position: relative;
     border-left: 3px solid #dee2e6;
 }
@@ -21,3 +21,8 @@
 .hidden {
     display: none;
 }
+
+input:invalid,
+select:invalid  {
+    border: 2px solid red;
+} 

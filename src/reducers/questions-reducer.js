@@ -26,8 +26,8 @@ const questionsReducer = function (state = initialState, action) {
                     ...state.questions,
                     {
                         id: uuid4(),
-                        conditionType: "",
-                        conditionValue: "",
+                        conditionType: null,
+                        conditionValue: null,
                         questionType: "",
                         questionValue: "",
                         subInputs: [],
