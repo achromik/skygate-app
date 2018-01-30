@@ -7,23 +7,42 @@ const QuestionItem = ({ question, updateAnswers, answer, answers }) => {
     return (
         <Fragment>
             <form
-                style={showSubQuestionsHandler(answer, question.conditionValue)}
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={(e) =>
+                    e.preventDefault()
+                }
+                onChange={(e) => {
+                    updateAnswers(e.target.name, e.target.value)
+                    if (question.subInputs.length) {
+                        question.subInputs.forEach((element) => {
+                            updateAnswers(element.id, '')
+                        })
+                    }
+                }}
             >
                 <div className="form-group d-block">
                     <label htmlFor={question.id} >{question.questionValue}</label>
-                    {printInputType(question)}
+                    {
+                        printInputType(question)
+                    }
                 </div>
             </form >
             <div className="ml-5">
                 {
                     question.subInputs.length
                         ? question.subInputs.map((element) => {
-                            return <SubQuestionItem
-                                key={element.id}
-                                question={element}
-                                answer={answers[`${question.id}`]}
-                            />
+                            const answer = answers[`${question.id}`];
+                            const condition = element.conditionValue;
+                            const type = element.conditionType;
+                            if (compareAnswerWithCondition(answer, condition, type)) {
+                                return (
+                                    <SubQuestionItem
+                                        key={element.id}
+                                        question={element}
+                                        answer={answers[`${question.id}`]}
+                                    />
+                                )
+                            }
+                            return null
                         })
                         : null
                 }
@@ -31,95 +50,77 @@ const QuestionItem = ({ question, updateAnswers, answer, answers }) => {
         </Fragment>
     );
 
-    function showSubQuestionsHandler(answer, condition) {
-        if (answer) { answer = answer.toUpperCase()}
-        if (condition) { condition = condition.toUpperCase()}
-        
-        switch (question.conditionType) {
-            case 'eq':
-                return answer === condition
-                    ? { display: 'block' }
-                    : { display: 'none' }
+    function printInputType(question) {
+        switch (question.questionType) {
+            case 'text':
+                return (
+                    <input
+                        id={question.id}
+                        name={question.id}
+                        type={question.questionType}
+                        className="form-control"
+                    />
+                )
 
-            case 'gt':
-                return answer > condition
-                    ? { display: 'block' }
-                    : { display: 'none' }
+            case 'radio':
+                return (
+                    <div
+                        id={question.id}
+                    >
+                        <div className="form-check form-check-inline ">
+                            <input
+                                id={`${question.id}_yes`}
+                                type="radio"
+                                className="form-check-input"
+                                name={question.id}
+                                value="Yes"
 
-            case 'lt':
-                return answer < condition
-                    ? { display: 'block' }
-                    : { display: 'none' }
+                            />
+                            <label className="form-check-label" htmlFor={`${question.id}_yes`}>Yes</label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input
+                                id={`${question.id}_no`}
+                                type="radio"
+                                className="form-check-input"
+                                name={question.id}
+                                value="No"
+                            />
+                            <label className="form-check-label" htmlFor={`${question.id}_no`}>No</label>
+                        </div>
+                    </div>
+                )
+
+            case 'number':
+                return (
+                    <input
+                        id={question.id}
+                        name={question.id}
+                        type={question.questionType}
+                        className="form-control"
+                    />
+                )
 
             default:
-                return ({ display: 'block' })
+                return null
         }
     }
+}
 
-function printInputType(question) {
-    switch (question.questionType) {
-        case 'text':
-            return (
-                <input
-                    id={question.id}
-                    name={question.id}
-                    type={question.questionType}
-                    className="form-control"
-                    onChange={(e) => {
-                        updateAnswers(e.target.name, e.target.value)
-                    }}
-                />
-            )
+function compareAnswerWithCondition(answer, condition, type) {
+    switch (type) {
+        case 'gt':
+            return parseInt(answer, 10) > parseInt(condition, 10)
 
-        case 'radio':
-            return (
-                <div
-                    id={question.id}
-                    onChange={(e) => {
-                        updateAnswers(e.target.name, e.target.value)
-                    }}
-                >
-                    <div className="form-check form-check-inline ">
-                        <input
-                            id={`${question.id}_yes`}
-                            type="radio"
-                            className="form-check-input"
-                            name={question.id}
-                            value="Yes"
+        case 'lt':
+            return parseInt(answer, 10) < parseInt(condition, 10)
 
-                        />
-                        <label className="form-check-label" htmlFor={`${question.id}_yes`}>Yes</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input
-                            id={`${question.id}_no`}
-                            type="radio"
-                            className="form-check-input"
-                            name={question.id}
-                            value="No"
-                        />
-                        <label className="form-check-label" htmlFor={`${question.id}_no`}>No</label>
-                    </div>
-                </div>
-            )
-
-        case 'number':
-            return (
-                <input
-                    id={question.id}
-                    name={question.id}
-                    type={question.questionType}
-                    className="form-control"
-                    onChange={(e) => {
-                        updateAnswers(e.target.name, e.target.value)
-                    }}
-                />
-            )
+        case 'eq':
+            return answer === condition
 
         default:
-            return null
+            return undefined
     }
-}
 }
 
 export default QuestionItem;
