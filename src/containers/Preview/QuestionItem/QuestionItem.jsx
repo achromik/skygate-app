@@ -1,5 +1,6 @@
 import React from 'react';
-import SubQuestionItem from "./QuestionItem.container";
+import SubQuestionItem from './QuestionItem.container';
+import './QuestionItem.css';
 
 const Fragment = React.Fragment;
 

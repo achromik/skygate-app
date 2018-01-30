@@ -4,3 +4,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 #SkyGate JS
 
 
+[Live](http://aleksanderchromik.pl/skygate-app/)
