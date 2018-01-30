@@ -14,6 +14,7 @@ export default (
         <Route path="create" component={Create} />
         <Route path="preview" component={Preview} />
         <Route path="export" component={Export} />
+        <Route path="skygate-app" component={Home} />
         <Route path="*" component={NotFound} />
     </Route>
 );
