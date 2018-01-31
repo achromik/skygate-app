@@ -26,7 +26,7 @@ npm run build
 
 ### Redux DevTools
 
-Default Redux Devtools Monitor is hidden. Key combination that toggles the dock visibility is `ctrl+v`. Key combination that toggles the dock visibility is `ctrl+q`. 
+Default Redux Devtools Monitor is hidden. Key combination that toggles the dock visibility is `ctrl+v`. Key combination that toggles the dock position is `ctrl+q`. 
 
 &nbsp;
 
