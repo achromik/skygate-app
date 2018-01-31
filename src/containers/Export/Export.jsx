@@ -1,5 +1,5 @@
 import React from 'react';
-import './Export.css'
+import './Export.css';
 
 const Fragment = React.Fragment;
 
@@ -19,7 +19,7 @@ const Export = ({ isPretyExport, questions, togglePrettyExport }) => {
                 {isPretyExport ? "Uglify" : "Pretty"}
             </button>
         </Fragment>
-    )
-}
+    );
+};
 
 export default Export;

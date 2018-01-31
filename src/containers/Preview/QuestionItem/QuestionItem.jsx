@@ -52,11 +52,11 @@ const QuestionItem = ({ question, updateAnswers, answer, answers }) => {
     return (
         <Fragment>
             <div onChange={(e) => {
-                updateAnswers(e.target.name, e.target.value)
+                updateAnswers(e.target.name, e.target.value);
                 if (question.subInputs.length) {
                     question.subInputs.forEach((element) => {
-                        updateAnswers(element.id, '')
-                    })
+                        updateAnswers(element.id, '');
+                    });
                 }
             }}>
                 <div className="form-group d-block">
@@ -80,9 +80,9 @@ const QuestionItem = ({ question, updateAnswers, answer, answers }) => {
                                         question={element}
                                         answer={answers[question.id]}
                                     />
-                                )
+                                );
                             }
-                            return null
+                            return null;
                         })
                         : null
                 }
@@ -95,37 +95,37 @@ const QuestionItem = ({ question, updateAnswers, answer, answers }) => {
             case 'text':
                 return (
                     <TextInput id={question.id} />
-                )
+                );
 
             case 'radio':
                 return (
                     <RadioInput id={question.id} />
-                )
+                );
 
             case 'number':
                 return (
                     <NumberInput id={question.id} />
-                )
+                );
 
             default:
-                return null
+                return null;
         }
     }
-}
+};
 
 function compareAnswerWithCondition(answer, condition, type) {
     switch (type) {
         case 'gt':
-            return parseInt(answer, 10) > parseInt(condition, 10)
+            return parseInt(answer, 10) > parseInt(condition, 10);
 
         case 'lt':
-            return parseInt(answer, 10) < parseInt(condition, 10)
+            return parseInt(answer, 10) < parseInt(condition, 10);
 
         case 'eq':
-            return answer === condition
+            return answer === condition;
 
         default:
-            return undefined
+            return undefined;
     }
 }
 

@@ -1,8 +1,6 @@
 [
     {
         "id": "6c29c0cd-c972-4c9b-8dec-222ba081b648",
-        "conditionType": "",
-        "conditionValue": "",
         "questionType": "radio",
         "questionValue": "Do you have a car?",
         "subInputs": [
@@ -79,8 +77,6 @@
     },
     {
         "id": "4fe0b47a-419e-467f-833c-19b7cacfac1d",
-        "conditionType": "",
-        "conditionValue": "",
         "questionType": "number",
         "questionValue": "What is your age?",
         "subInputs": [
@@ -121,8 +117,6 @@
     },
     {
         "id": "2e57052a-e91e-4bd9-9e82-75a14d3df6d0",
-        "conditionType": "",
-        "conditionValue": "",
         "questionType": "text",
         "questionValue": "what is your sex? (!! Type M for male, F for female)",
         "subInputs": [

@@ -1,21 +1,20 @@
 import React from 'react';
 // import FormContainer from './Form.container';
 
-import FormContainer from './QuestionForm/QuestionForm.container'      ;
+import FormContainer from './QuestionForm/QuestionForm.container';
 
 const Fragment = React.Fragment;
 
 const Create = ({ questions, updateQuestion, deleteQuestion, addSubInput, addQuestion }) =>
     <Fragment>
         {questions.map(item => {
-            return <FormContainer
-                level={0}
-                key={item.id}
-                question={item}
-                // deleteQuestion={deleteQuestion}
-                // updateQuestion={updateQuestion}
-                // addSubInput={addSubInput}
-            />
+            return (
+                <FormContainer
+                    level={0}
+                    key={item.id}
+                    question={item}
+                />
+            );
         })}
         <button
             key={"add-button"}

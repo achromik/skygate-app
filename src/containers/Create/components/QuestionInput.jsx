@@ -1,7 +1,7 @@
 import React from 'react';
 
 const QuestionInput = (props) => (
-    <div className="form-group row" data-name="question">
+    <div className="form-group row mx-0" data-name="question">
         <label className="col-form-label col-form-label-sm col-sm-2 ">Question</label>
         <div className="col-sm-10">
             <input

@@ -14,13 +14,13 @@ const Preview = ({ questions, resetAnswers }) => {
                             <Fragment key={element.id}>
                                 <QuestionItem question={element} />
                             </Fragment>
-                        )
+                        );
                     })
                 }
             </form>
         </div>
-    )
-}
+    );
+};
 
 
 function resetAnswerForm() {

@@ -12,7 +12,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         togglePrettyExport: () => dispatch(togglePrettyExport())
-    }
-}
+    };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Export);

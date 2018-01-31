@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
-import '../../styles/bootstrap.css';
+
 
 const Fragment = React.Fragment;
 
 const Navigation = props => {
     return (
         <Fragment>
-            <nav>
+            <nav >
                 <ul className="nav nav-tabs">
                     <li className="nav-item">
                         <Link key="1" className="nav-link" activeClassName="active" to="/create">Create</Link>
@@ -15,9 +15,7 @@ const Navigation = props => {
                     <li className="nav-item">
                         <Link
                             onClick={(e) => {
-                                
                                 props.resetAnswers();
-                                
                             }}
                             key="2"
                             className="nav-link"

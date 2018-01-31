@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TypeInput = (props) => (
-    <div className="form-group row" data-name="type">
+    <div className="form-group row row mx-0" data-name="type">
         <label className="col-form-label col-form-label-sm col-sm-2 ">Type</label>
         <div className="col-sm-10">
             <select

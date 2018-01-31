@@ -10,14 +10,14 @@ class QuestionForm extends Component {
         super(props);
         this.state = {
             question: {}
-        }
+        };
         this.onChangeHandler = this.onChangeHandler.bind(this);
     }
 
     onChangeHandler(e) {
         this.setState({
             question: Object.assign({}, this.state.question, { [e.target.name]: e.target.value })
-        })
+        });
     }
 
     render() {
@@ -27,9 +27,9 @@ class QuestionForm extends Component {
         const addSubInput = this.props.addSubInput;
         const onChangeHandler = this.onChangeHandler;
         const parentQuestionType = this.props.parentQuestionType;
-        const colorLevel = 250 - this.props.level % 5 * 14
+        const colorLevel = 250 - this.props.level % 5 * 14;
 
-        const isHiddenConditionFields = question.conditionType === null
+        const isHiddenConditionFields = question.conditionType === null || question.conditionType === undefined;
 
         return (
             <div key={question.id} className="questionForm">
@@ -39,23 +39,23 @@ class QuestionForm extends Component {
                     onChange={(e) => {
 
                         if (e.target.name === "questionType") {
-                            updateQuestion(question.id, { [e.target.name]: e.target.value })
+                            updateQuestion(question.id, { [e.target.name]: e.target.value });
                             if (question.subInputs) {
                                 question.subInputs.forEach((element) => {
                                     updateQuestion(element.id, {
                                         questionType: '',
                                         conditionType: '',
                                         conditionValue: ''
-                                    })
-                                })
+                                    });
+                                });
                             }
                         } else {
-                            updateQuestion(question.id, { [e.target.name]: e.target.value })
+                            updateQuestion(question.id, { [e.target.name]: e.target.value });
                         }
                     }}
                     onSubmit={(e) => {
                         e.preventDefault();
-                        addSubInput(question.id)
+                        addSubInput(question.id);
                     }}
 
                 >
@@ -104,7 +104,7 @@ class QuestionForm extends Component {
                                         question={item}
                                         parentQuestionType={question.questionType}
                                     />
-                                )
+                                );
                             })
                             : null
                     }
